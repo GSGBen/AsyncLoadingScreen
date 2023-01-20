@@ -56,16 +56,19 @@ public:
 		return FModuleManager::Get().IsModuleLoaded("AsyncLoadingScreen");
 	}
 
+	/**
+	 * Setup loading screen settings and pass them to MoviePlayer.
+	 * Public so this can be called externally, then GetMoviePlayer()->PlayMovie() can be called to
+	 * manually trigger the loading screen.
+	 * IMPORTANT: bAllowEngineTick needs to be true (in project settings) to allow stopping it manually afterwards.
+	 */
+	void SetupLoadingScreen(const FALoadingScreenSettings& LoadingScreenSettings);
+
 private:
 	/**
 	 * Loading screen callback, it won't be called if we've already explicitly setup the loading screen
 	 */
 	void PreSetupLoadingScreen();
-
-	/**
-	 * Setup loading screen settings 
-	 */
-	void SetupLoadingScreen(const FALoadingScreenSettings& LoadingScreenSettings);
 
 	/**
 	 * Shuffle the movies list

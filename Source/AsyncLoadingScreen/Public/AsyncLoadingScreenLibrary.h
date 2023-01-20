@@ -49,6 +49,19 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Async Loading Screen")
 	static void SetDisplayMovieIndex(int32 MovieIndex);
 
+	/**
+	 * Wrapper for FAsyncLoadingScreenModule::SetupLoadingScreen() because it's not accessible outside the module even if it's public.
+	 * Also sets some bools that needs to be set (engine ticking and wait for manual stop at least).
+	 * Call `UnsetupLoadingScreenForSeamlessTravel()` afterwards to revert these so that full travel works.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Async Loading Screen")
+	static void SetupLoadingScreenForSeamlessTravel();
+
+	/**
+	 * Call after returning from seamless travel to revert the loading screen option changes that are specifically for seamless travel, so that full travel works again.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Async Loading Screen")
+	static void UnsetupLoadingScreenForSeamlessTravel();
 
 	/**
 	 * Stop the loading screen. To use this function, you must enable the "bAllowEngineTick" option.

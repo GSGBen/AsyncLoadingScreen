@@ -9,6 +9,8 @@
 
 #include "AsyncLoadingScreenLibrary.h"
 #include "MoviePlayer.h"
+#include "LoadingScreenSettings.h"
+#include "AsyncLoadingScreen.h"
 
 int32 UAsyncLoadingScreenLibrary::DisplayBackgroundIndex = -1;
 int32 UAsyncLoadingScreenLibrary::DisplayTipTextIndex = -1;
@@ -27,6 +29,24 @@ void UAsyncLoadingScreenLibrary::SetDisplayTipTextIndex(int32 TipTextIndex)
 void UAsyncLoadingScreenLibrary::SetDisplayMovieIndex(int32 MovieIndex)
 {
 	UAsyncLoadingScreenLibrary::DisplayMovieIndex = MovieIndex;	
+}
+
+void UAsyncLoadingScreenLibrary::SetupLoadingScreenForSeamlessTravel()
+{
+	const ULoadingScreenSettings* Settings = GetDefault<ULoadingScreenSettings>();
+
+	// copy to modify
+	FALoadingScreenSettings DefaultLoadingScreenCopy = Settings->DefaultLoadingScreen;
+	DefaultLoadingScreenCopy.bAllowEngineTick = true;
+	DefaultLoadingScreenCopy.bWaitForManualStop = true;
+
+	FAsyncLoadingScreenModule::Get().SetupLoadingScreen(DefaultLoadingScreenCopy);
+}
+
+void UAsyncLoadingScreenLibrary::UnsetupLoadingScreenForSeamlessTravel()
+{
+	const ULoadingScreenSettings* Settings = GetDefault<ULoadingScreenSettings>();
+	FAsyncLoadingScreenModule::Get().SetupLoadingScreen(Settings->DefaultLoadingScreen);
 }
 
 void UAsyncLoadingScreenLibrary::StopLoadingScreen()

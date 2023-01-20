@@ -10,6 +10,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DeveloperSettings.h"
+#include "MoviePlayer/Public/MoviePlayer.h"
 #include "MoviePlayer.h"
 #include "Widgets/Layout/SScaleBox.h"
 #include "Styling/SlateBrush.h"
