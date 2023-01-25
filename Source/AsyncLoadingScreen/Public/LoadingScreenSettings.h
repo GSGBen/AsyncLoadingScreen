@@ -29,6 +29,10 @@ enum class EAsyncLoadingScreenLayout : uint8
 	 * Loading and tip widgets can be at the bottom or top.
 	 */
 	ALSL_Classic UMETA(DisplayName = "Classic"),
+	/**
+	 * Duplication of Classic to allow having a separate style for startup and inter-map.
+	 */
+	ALSL_Classic2 UMETA(DisplayName = "Classic2"),
 	/** 
 	 * The loading widget is at the center of the screen, tip widget can be at the bottom or top.
 	 * The Center layout is a good choice if your loading icon is the main design.
@@ -688,6 +692,12 @@ public:
 	 */
 	UPROPERTY(Config, EditAnywhere, Category = "Layout")
 	FClassicLayoutSettings Classic;
+
+	/**
+	 * Duplication of Classic to allow having a separate style for startup and inter-map.
+	 */
+	UPROPERTY(Config, EditAnywhere, Category = "Layout")
+	FClassicLayoutSettings Classic2;
 	
 	/**
 	 * Center Layout settings.

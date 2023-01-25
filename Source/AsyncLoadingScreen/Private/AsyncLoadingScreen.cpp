@@ -106,6 +106,9 @@ void FAsyncLoadingScreenModule::SetupLoadingScreen(const FALoadingScreenSettings
 		case EAsyncLoadingScreenLayout::ALSL_Classic:
 			LoadingScreen.WidgetLoadingScreen = SNew(SClassicLayout, LoadingScreenSettings, Settings->Classic);
 			break;
+		case EAsyncLoadingScreenLayout::ALSL_Classic2:
+			LoadingScreen.WidgetLoadingScreen = SNew(SClassicLayout, LoadingScreenSettings, Settings->Classic2);
+			break;
 		case EAsyncLoadingScreenLayout::ALSL_Center:
 			LoadingScreen.WidgetLoadingScreen = SNew(SCenterLayout, LoadingScreenSettings, Settings->Center);
 			break;
